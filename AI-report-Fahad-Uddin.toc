@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{iii}% 
+\contentsline {section}{\numberline {2}Neural Network}{iii}% 
+\contentsline {subsection}{\numberline {2.1}Inputs}{iii}% 
+\contentsline {subsection}{\numberline {2.2}Training Set}{iii}% 
+\contentsline {subsection}{\numberline {2.3}Outputs}{iv}% 
+\contentsline {subsection}{\numberline {2.4}Activation Function}{iv}% 
+\contentsline {subsection}{\numberline {2.5}Weight Space}{iv}% 
+\contentsline {subsection}{\numberline {2.6}Initialization}{iv}% 
+\contentsline {subsection}{\numberline {2.7}Forward Pass}{v}% 
+\contentsline {subsection}{\numberline {2.8}Gradient Descent}{v}% 
+\contentsline {section}{\numberline {3}Neural Network Learning}{v}% 
+\contentsline {section}{\numberline {4}Initialization}{v}% 
+\contentsline {section}{\numberline {5}Forward Propagation}{vii}% 
+\contentsline {section}{\numberline {6}Back-Propagate Error Function}{x}% 
+\contentsline {section}{\numberline {7}Train Network}{x}% 
+\contentsline {section}{\numberline {8}Predict}{x}% 
+\contentsline {section}{\numberline {9}Iterate Convergence}{x}% 
+\contentsline {section}{\numberline {10}CIFAR-10 Dataset}{x}% 
+\contentsline {section}{\numberline {11}Result}{x}% 
+\contentsline {section}{\numberline {12}Conclusion}{x}% 
