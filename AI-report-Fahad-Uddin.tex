@@ -24,7 +24,7 @@
 	The City College of New York\\
 	New York, New york\\
 	\\
-	\texttt{fahadu90@gmail.com}
+	\texttt{fuddin003@citymail.cuny.edu}
 	\\
 	\\
 	\\
@@ -70,7 +70,7 @@ We have seen a rising interest in multi-layer neural networking in recent years 
 
 \section{Introduction}
 
-The neural network at its highest level is simple, all it does you give it some inputs as binary mode and it will give you a prediction as an output. based on the output you can decide whether to keep continue to get the output till you get the desired result or to stop with the current out. Backpropagation is an algorithm to train the neural network. The backpropagation used in a feed-forward artificial neural network. We can use this algorithm to train large deep learning networks. In this paper, we will discuss how to implement the algorithm in a neural network. It is very important to learn the basic functions and it will help us to implement the mathematics on a real-life data set using a c++ program.
+The neural network at its highest level is simple, all it does you give it some inputs as binary mode and it will give you a prediction as an output. based on the output you can decide whether to keep continue to get the output till you get the desired result or to stop with the current out. Backpropagation is an algorithm to train the neural network. The backpropagation used in a feed-forward artificial neural network. We can use this algorithm to train large deep learning networks. In this paper, we will discuss how to implement the algorithm in a neural network. It is very important to learn the basic functions and it will help us to implement the mathematics on a real-life data set using a c++ program.\cite{BOOK:1}
 
 \section{Neural Network}
 
@@ -121,12 +121,6 @@ Neural Network learning happens in six stages, at the end of these stages the mo
 
 In order to write the algorithm on a c++ code we need to come out with a plan. A step by step way to implement the algorithm and train the model.
 
-\begin{figure}
-	\includegraphics[width=\linewidth]{images/layers-weight.png}
-	\caption{Multi-layer Neural Network with weight.}
-	\label{fig:layer-weight}
-\end{figure}
-
 \begin{quote}
 1. Initialization\\
 2. Forward Propagation\\
@@ -136,9 +130,16 @@ In order to write the algorithm on a c++ code we need to come out with a plan. A
 6. Iterate Convergence\\
 \end{quote}  
 
+\newpage
+\begin{figure}
+	\centering
+	\includegraphics[width=100mm]{images/layers-weight.png}
+	\caption{Multi-layer Neural Network with weight.}
+	\label{fig:layer-weight}
+\end{figure}
 
 \section{Initialization}
-We would need a class initiation, where we could define the functions responsible for creating and defining the network architecture, various weight matrices, bias vector, activation vector.
+We would need a class initiation, where we could define the functions responsible for creating and defining the network architecture, various weight matrices, bias vector.
 
 Every neuron has weight which we should maintain. Every input neuron will have weight and bias node also have weight. We would need to store the weights to use them throughout the program. It is better to assign a small number between 0 to 1 for the weights.
 
@@ -247,21 +248,90 @@ We perform backward process so first consider the last weight w5 as
 \[Error_{w5}=\frac{\sigma E_{Total}}{\sigma w5}\]
 
 
+\[E_{Total}=\frac{1}{2}(T1 - y1_{Final})^{2}+\frac{1}{2}(T2 - y2_{Final})^{2}\]
 
 
+From the second equation, it is clear that we cannot partially differentiate it with respect to w5 because there is no any w5. We split equation one into multiple terms so that we can easily differentiate it with respect to w5 as
+
+
+\[\frac{\sigma E_{total}}{\sigma w5}=\frac{\sigma E_{total}}{\sigma y1_{final}}*\frac{\sigma y1_{final}}{\sigma y1}*\frac{\sigma y1}{\sigma w5}\]
+
+
+Now, we calculate each term one by one to differentiate Etotal with respect to w5 as
+
+
+\[\frac{\sigma E_{total}}{\sigma y1_{final}}=0.74136507\]
+
+\[\frac{\sigma y1}{\sigma w5=0.0.5968843}\]
+	
+\[Error_{w5}=0.08216704\]
+
+Now, we will calculate the updated weight w5new with the help of the following formula
+
+\[w5_{new}=w5-\eta *\frac{\sigma E_{Total}}{\sigma w5}\]
+
+\[w5_{new}=0.35891648\]
+
+In the same way, we calculate w6new,w7new, and w8new and this will give us the following values
+
+\[w6_{new}=0.48666186\]
+\[w7_{new}=0.511301270\]
+\[w8_{new}=0.561370121\]
+
+
+In the same way, we calculate w1new,w2new, w3new, and w4new and this will give us the following values
+
+
+\[w1_{new}=0.14978071\]
+\[w2_{new}=0.19956143\]
+\[w3_{new}=0.24975114\]
+\[w4_{new}=0.29950229\]
+
+Now we have calculated the new weights.
 
 
 \section{Train Network}
+
+The network would be trained using gradient decent. Training network involves multiple iteration of exposing dataset to the network and for each line of input we need to do forward propagation for the inputs, backwordpropagate the error and update the network weights.
+
+We need the gradient vector of the cost function, aka the partial derivatives of all the weights and the biases for the cost. Backpropagation gets you the gradient vector, but it isn’t the only way to do so! Another way to do it is to use dual numbers. 
+
+Using dual numbers, you would evaluate the output of the network, using dual numbers instead of floating point numbers, and at the end you’d have your gradient vector. It’s not quite as efficient as backpropagation (or so I’ve heard, I haven’t tried it), but if you know how dual numbers work, it’s super easy to implement.
+
+
 \section{Predict}
+
+We know how forward propagate works for an input pattern to get an output. This is all we need to do to make a prediction. We can use the output values themselves directly as the probability of a pattern belonging to each output class.
+
+It may be more useful to turn this output back into a crisp class prediction. We can do this by selecting the class value with the larger probability. This is also called the arg max function.
+
+Below is a function named predict() that implements this procedure. It returns the index in the network output that has the largest probability. It assumes that class values have been converted to integers starting at 0.
+
 \section{Iterate Convergence}
 
+The weights would be updated a small delta step at every time, many iteration are rquired in order to get the network to learn. After every iteration the gradient descent will update the weights for less and less global less error function. The amount of iteration are random, it would be defined by the way the network is learning. Th elearning rate the network meta-parameters and the optimization method are used for the less error function
+
+\section{Result}
+
+ Total error 0.298371109 on the network for the forward pass 0.05 and 0.1 inputs. In the first round of Backpropagation, the total error is down to 0.291027924. After repeating this process, the total error is down to 0.0000351085. At this point, the outputs neurons generate 0.159121960 and 0.984065734 i.e., nearby our target value when we feed forward the 0.05 and 0.1.
 
 \section{CIFAR-10 Dataset}
-\section{Result}
+ The CIFAR-10 datset is the subset of 80 million small images. This dataset were collected by Alex Krizhevsky, Vinod Nair, and Geoffrey Hinton.
+ 
+The CIFAR-10 dataset have 60,000 32*32 colour images in 10 classes. 6000 images per class. There are 50000 training images and 10,000 test images. 
+This dataset contains images of airplane, automobile, bird, cat, deer, dog, frog, horse, ship and truck
+
+The classes are mutually exclusive. We are going to use this dataset to train our network and make a prediction.
+
+
 \section{Conclusion}
 
 
-\bibliography{latex-sample}
-\bibliographystyle{unsrt}
+I have learned a great deal about neural network while reaserching for this paper. My research on various site helped me grasp the basics of backpropagation and neural network model training. There alot of scope to work on. We can try larger or smaller networks trained for longer or shorter. See if we can get better performance on the dataset.\cite{ARTICLE:1}
+
+We can experiment with different weight initialization techniques. we can also add support for more hidden layers, trained in just the same way as the one hidden layer used in this tutorial.
+
+\bibliography{ai-papers}
+\bibliographystyle{ieeetr}
 
 \end{document}

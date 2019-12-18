@@ -1,3 +1,12 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{BOOK:1}
+S.~L. .~D. Kopec, {\em ArtificiAl intelligence in the 21st century - A Living
+  Introduction}.
+\newblock Mercury Learning and Information, 2016.
+
+\bibitem{ARTICLE:1}
+P.~Budhwant, ``A beginner’s guide to deriving and implementing
+  backpropagation,'' {\em Medium.com}, 2018.
 
 \end{thebibliography}
